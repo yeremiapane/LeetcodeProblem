@@ -34,6 +34,7 @@ Or you can use this for the actual remove duplicate
 		return len(temp)
 	}
 */
+
 func main() {
 	//test := []int{1, 1, 2}
 	//fmt.Println(removeDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}))
