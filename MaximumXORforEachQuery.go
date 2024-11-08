@@ -1,3 +1,8 @@
+/*
+	Problem : 1829. Maximum XOR for each query
+	link :https://leetcode.com/problems/maximum-xor-for-each-query/submissions/1446855796/?envType=daily-question&envId=2024-11-08
+*/
+
 package main
 
 import (
