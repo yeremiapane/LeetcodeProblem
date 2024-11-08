@@ -2,36 +2,28 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	"math/bits"
 )
 
-func countSetBits(n int) int {
-	count := 0
-	for n > 0 {
-		count += n & 1
-		n >>= 1
-	}
-	return count
-}
-
-// Fungsi untuk memeriksa apakah array dapat diurutkan dengan operasi yang valid
 func canSortArray(nums []int) bool {
-	// Salin array asli untuk dibandingkan nanti
-	original := make([]int, len(nums))
-	copy(original, nums)
+	changed := true
 
-	// Urutkan array berdasarkan jumlah bit yang diset
-	sort.Slice(nums, func(i, j int) bool {
-		return countSetBits(nums[i]) < countSetBits(nums[j])
-	})
-
-	// Periksa apakah array yang diurutkan sama dengan array asli yang diurutkan
-	for i := range nums {
-		if nums[i] != original[i] {
-			return false
+	for changed {
+		changed = false
+		for i := 0; i < len(nums)-1; i++ {
+			if nums[i] > nums[i+1] {
+				// Cek apakah elemen yang bersebelahan memiliki jumlah set bits yang sama
+				if bits.OnesCount(uint(nums[i])) == bits.OnesCount(uint(nums[i+1])) {
+					// Tukar posisi elemen
+					nums[i], nums[i+1] = nums[i+1], nums[i]
+					changed = true
+				} else {
+					// Jika tidak, tidak mungkin array bisa diurutkan
+					return false
+				}
+			}
 		}
 	}
-
 	return true
 }
 
