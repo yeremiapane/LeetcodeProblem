@@ -1,3 +1,8 @@
+/*
+	Problem : 2461. Maximum Sum of Distinct Subarrays With Length K
+	Link 	: https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/description/
+*/
+
 package main
 
 import (
@@ -47,6 +52,38 @@ func main() {
 		fmt.Printf("Expected: %v\n\n", tc.expected)
 	}
 }
+
+/*
+	Pseudocode :
+
+
+	function maximumSubarraySum(nums, k):
+    n = length(nums)
+    max_sum = 0
+    current_sum = 0
+    left = 0
+    window_elements = empty set
+
+    for right from 0 to n-1:
+        while right - left + 1 > k or nums[right] in window_elements:
+            remove nums[left] from window_elements
+            current_sum -= nums[left]
+            left += 1
+
+        add nums[right] to window_elements
+        current_sum += nums[right]
+
+        if right - left + 1 == k:
+            max_sum = max(max_sum, current_sum)
+
+    return max_sum
+
+function max(a, b):
+    if a > b:
+        return a
+    return b
+
+*/
 
 /*
 
