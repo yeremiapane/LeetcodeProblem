@@ -1,3 +1,8 @@
+/*
+	Problem : 2516. Take K of Each Character From Left and Right
+	Link 	: https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/description/?envType=daily-question&envId=2024-11-20
+*/
+
 package main
 
 import (
