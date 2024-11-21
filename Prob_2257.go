@@ -1,9 +1,15 @@
+/*
+	Problem : 2257. Count Unguarded Cells in the Grid
+	Link 	: https://leetcode.com/problems/count-unguarded-cells-in-the-grid/description/
+*/
+
 package main
 
 import "fmt"
 
 func countUnguarded(m int, n int, guards [][]int, walls [][]int) int {
-	var result = int(m * n)
+
+	var result int64 = int64(m * n)
 	puzzle := make([][]byte, m)
 	for i := 0; i < m; i++ {
 		puzzle[i] = make([]byte, n)
@@ -14,58 +20,66 @@ func countUnguarded(m int, n int, guards [][]int, walls [][]int) int {
 		result--
 	}
 
-	for _, wall := range walls {
-		puzzle[wall[0]][wall[1]] = 'W'
+	for _, walls := range walls {
+		puzzle[walls[0]][walls[1]] = 'W'
 		result--
 	}
 
 	for i := 0; i < m; i++ {
 		for j := 0; j < n; j++ {
 			if puzzle[i][j] == 'G' {
-				for k := i - 1; k >= 0; k-- {
-					if puzzle[k][j] == 'R' {
+				// up
+				for h := i - 1; h >= 0; h-- {
+					if puzzle[h][j] == 'R' {
 						continue
-					} else if puzzle[k][j] != 0 {
+					} else if puzzle[h][j] != 0 {
 						break
 					} else {
-						puzzle[k][j] = 'R'
+						puzzle[h][j] = 'R'
 						result--
 					}
 				}
-				for k := j + 1; k < m; k++ {
-					if puzzle[k][j] == 'R' {
-						continue
-					} else if puzzle[k][j] != 0 {
-						break
-					} else {
-						puzzle[k][j] = 'R'
-						result--
-					}
-				}
-				for k := j - 1; k >= 0; k-- {
 
-					if puzzle[i][k] == 'R' {
+				// down
+				for h := i + 1; h < m; h++ {
+
+					if puzzle[h][j] == 'R' {
 						continue
-					} else if puzzle[i][k] != 0 {
+					} else if puzzle[h][j] != 0 {
 						break
 					} else {
-						puzzle[i][k] = 'R'
+						puzzle[h][j] = 'R'
 						result--
 					}
 				}
-				for k := j + 1; k < n; k++ {
-					if puzzle[i][k] == 'R' {
+
+				// left
+				for h := j - 1; h >= 0; h-- {
+
+					if puzzle[i][h] == 'R' {
 						continue
-					} else if puzzle[i][k] != 0 {
+					} else if puzzle[i][h] != 0 {
 						break
 					} else {
-						puzzle[i][k] = 'R'
+						puzzle[i][h] = 'R'
+						result--
+					}
+				}
+				// right
+				for h := j + 1; h < n; h++ {
+					if puzzle[i][h] == 'R' {
+						continue
+					} else if puzzle[i][h] != 0 {
+						break
+					} else {
+						puzzle[i][h] = 'R'
 						result--
 					}
 				}
 			}
 		}
 	}
+
 	return int(result)
 }
 
