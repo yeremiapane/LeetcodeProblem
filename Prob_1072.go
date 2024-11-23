@@ -1,3 +1,8 @@
+/*
+	Problem : 1072. Flip Columns For Maximum Number of Equal Rows
+	Link 	: https://leetcode.com/problems/flip-columns-for-maximum-number-of-equal-rows/description/?envType=daily-question&envId=2024-11-22
+*/
+
 package main
 
 import (
