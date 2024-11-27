@@ -59,6 +59,6 @@ func main() {
 		fmt.Printf("Input n : %d\n", tc.n)
 		fmt.Printf("Input queries: %v\n", tc.queries)
 		fmt.Printf("Output : %v\n", shortestDistanceAfterQueries(tc.n, tc.queries))
-		fmt.Printf("Expected: %v\n", tc.expected)
+		fmt.Printf("Expected: %v\n\n", tc.expected)
 	}
 }
